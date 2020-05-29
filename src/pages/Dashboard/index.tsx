@@ -79,7 +79,7 @@ const Dashboard: React.FC = () => {
                 <p>Saídas</p>
                 <img src={outcome} alt="Outcome" />
               </header>
-              <h1 data-testid="balance-outcome">{`- ${balance.outcome}`}</h1>
+              <h1 data-testid="balance-outcome">{balance.outcome}</h1>
             </Card>
             <Card total>
               <header>
@@ -107,7 +107,9 @@ const Dashboard: React.FC = () => {
                 <tr key={transaction.id}>
                   <td className="title">{transaction.title}</td>
                   <td className={transaction.type}>
-                    {transaction.formattedValue}
+                    {transaction.type === 'outcome'
+                      ? `- ${transaction.formattedValue}`
+                      : transaction.formattedValue}
                   </td>
                   <td>{transaction.category.title}</td>
                   <td>{transaction.formattedDate}</td>
